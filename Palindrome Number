@@ -1,0 +1,16 @@
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+ 
+var isPalindrome = function(x) {
+    let word = x.toString();
+    let a = word.split("");
+    let turn = a.reverse();
+    let newString = turn.join("");
+    if (word === newString){
+        return true;
+    }else{
+        return false;
+    }
+};

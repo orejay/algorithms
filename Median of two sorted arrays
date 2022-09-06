@@ -1,0 +1,22 @@
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var findMedianSortedArrays = function(nums1, nums2) {
+    for (let i of nums2) {
+        nums1.push(i);
+    }
+    let d = nums1.sort((x, y) => x - y);
+    console.log(d);
+    if (d.length % 2 == 1){
+        let a = Math.floor(d.length/2);
+        return d[a];
+    }
+    else{
+        let a = (d.length/2)-1;
+        let b = a+1;
+        let c = (d[a]+d[b])/2;
+        return c;
+    }
+};

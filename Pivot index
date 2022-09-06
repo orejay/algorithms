@@ -1,0 +1,64 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var pivotIndex = function(nums) {
+    let ans = -1;
+    if (nums.length == 1){
+        ans = 0;
+        return ans;
+    }
+    else if (nums.length == 2){
+        if (nums[1] ==  0 && nums[0] == 0){
+            ans = 0;
+            return ans;
+        }
+        else if (nums[0] ==  0 && nums[1] != 0){
+            ans = 1;
+            return ans;
+        }
+        else if (nums[0] !=  0 && nums[1] == 0){
+            ans = 0;
+            return ans;
+        }
+    }
+    else {
+        for (let i=0; i < nums.length; i++){
+            if (i == 0){
+                let a = nums.slice(1, nums.length+1);
+                let sum = a.reduce(function (x, y){
+                    return x+y;
+                }, 0)
+                if (sum == 0){
+                    ans = i;
+                    return ans;
+                }
+            }
+            else if (i == nums.length-1) {
+                let a = nums.slice(0, nums.length-1);
+                let sum = a.reduce(function (x, y){
+                    return x+y;
+                }, 0)
+                if (sum == 0){
+                    ans = i;
+                    return ans;
+                }
+            }
+            else {
+                let left = nums.slice(0, i);
+                let right = nums.slice(i+1, nums.length);
+                let sumLeft = left.reduce(function (x, y){
+                    return x+y;
+                }, 0);
+                let sumRight = right.reduce(function (x, y){
+                    return x+y;
+                }, 0);
+                if (sumLeft == sumRight){
+                    ans = i;
+                    return ans;
+                }
+            }
+        }
+    }
+    return ans;
+};

@@ -1,0 +1,26 @@
+/**
+ * @param {string} word1
+ * @param {string} word2
+ * @return {boolean}
+ */
+var checkAlmostEquivalent = function(word1, word2) {
+    let a = 'abcdefghijklmnopqrstuvwxyz';
+    let b = 0;
+    let c = 0;
+    let d, e;
+    let f = [];
+    for(let i = 0; i < a.length; i++){
+        if (word1.includes(a[i]) || word2.includes(a[i])) {
+            d = new RegExp(`${a[i]}`, 'g');
+            (word1.includes(a[i]))? b = word1.match(d).length : b = 0;
+            (word2.includes(a[i])) ? c = word2.match(d).length : c = 0;
+            (b > c)? e = b - c : e = c - b;
+            f.push(e);
+        }
+    }
+    let h = f.sort()
+    if (h[h.length-1] >= 4 ){ 
+        return false;
+    }
+    else{ return true; } 
+};
